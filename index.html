@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Our Love Story</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600&family=Playfair+Display:ital,wght@0,600;1,500&display=swap">
+  <style>
+    :root {
+      --wine: #5a141f;
+      --deep: #1d0709;
+      --paper: #fbefe0;
+      --ink: #4a1520;
+      --gold: #c9a15b;
+      --peach: #f6b99a;
+      --tile: #fff8ee;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    body {
+      background: radial-gradient(120% 80% at 50% 0, #3a0e16 0, var(--deep) 70%);
+      color: var(--paper);
+      font-family: Cairo, system-ui, sans-serif;
+      overflow: hidden
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 0;
+      color: inherit
+    }
+
+    button:focus-visible,
+    .tile:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px
+    }
+
+    .view {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 14px 14px 10px;
+      padding-top: calc(14px + env(safe-area-inset-top, 0px));
+      padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px))
+    }
+
+    .hide {
+      display: none !important
+    }
+
+    .en {
+      font-family: 'Playfair Display', Georgia, serif;
+      direction: ltr
+    }
+
+    /* cover */
+    #cover {
+      align-items: center;
+      justify-content: center
+    }
+
+    .book {
+      width: min(86vw, 340px);
+      aspect-ratio: 3/4.3;
+      border-radius: 6px 18px 18px 6px;
+      background: linear-gradient(135deg, #7a1c2b, #4a0f19);
+      border: 1px solid var(--gold);
+      box-shadow: -10px 14px 0 -4px #34090f, 0 30px 60px #0009;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 26px;
+      text-align: center;
+      position: relative
+    }
+
+    .book::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid #c9a15b66;
+      border-radius: 3px 12px 12px 3px;
+      pointer-events: none
+    }
+
+    .book small {
+      letter-spacing: .2em;
+      color: var(--gold);
+      font-size: .7rem
+    }
+
+    .book h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      line-height: 1.05;
+      font-weight: 600
+    }
+
+    .book .names {
+      color: var(--gold);
+      font-size: 1.15rem
+    }
+
+    .book .since {
+      opacity: .8;
+      font-size: .85rem
+    }
+
+    .cta {
+      background: linear-gradient(90deg, var(--paper), var(--peach));
+      color: var(--ink);
+      font-weight: 600;
+      border-radius: 99px;
+      padding: 12px 28px;
+      margin-top: 8px
+    }
+
+    .book.opening {
+      animation: open .7s ease-in forwards
+    }
+
+    @keyframes open {
+      to {
+        transform: perspective(900px) rotateY(-70deg) scale(.9);
+        opacity: 0
+      }
+    }
+
+    /* reader */
+    #bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff12;
+      border: 1px solid #ffffff1f;
+      border-radius: 18px;
+      padding: 8px 12px;
+      margin-bottom: 10px
+    }
+
+    #play {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--peach);
+      color: var(--ink);
+      font-size: 1rem;
+      flex: none
+    }
+
+    #bar .t {
+      flex: 1;
+      min-width: 0
+    }
+
+    #bar .t b {
+      display: block;
+      font-size: .78rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    #prog {
+      height: 4px;
+      border-radius: 4px;
+      background: #ffffff26;
+      margin-top: 6px;
+      overflow: hidden;
+      direction: ltr
+    }
+
+    #prog i {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--gold)
+    }
+
+    #pick {
+      background: none;
+      font-size: .75rem;
+      color: var(--gold);
+      text-decoration: underline;
+      padding: 4px
+    }
+
+    #page {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 22px;
+      padding: 20px 18px;
+      box-shadow: 0 20px 50px #0008
+    }
+
+    #page .meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: .72rem;
+      color: #8a5a5f;
+      margin-bottom: 8px
+    }
+
+    #page h2 {
+      font-family: Amiri, serif;
+      font-size: 1.7rem;
+      text-align: center;
+      margin: 6px 0 16px;
+      color: #5a141f
+    }
+
+    #page p {
+      line-height: 1.95;
+      text-align: center;
+      margin: 0 0 14px
+    }
+
+    .counter {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 6px
+    }
+
+    .counter div {
+      background: var(--tile);
+      border-radius: 14px;
+      padding: 10px 4px;
+      text-align: center;
+      box-shadow: 0 1px 0 #e9d3bb
+    }
+
+    .counter b {
+      display: block;
+      font-size: 1.35rem;
+      font-variant-numeric: tabular-nums
+    }
+
+    .counter span {
+      font-size: .72rem;
+      color: #8a5a5f
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px
+    }
+
+    .tile {
+      background: var(--tile);
+      border-radius: 14px;
+      padding: 6px;
+      border: 0;
+      color: var(--ink);
+      text-align: center
+    }
+
+    .tile .img {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      background: #f1e0cf center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .72rem;
+      color: #8a5a5f;
+      padding: 6px
+    }
+
+    .tile em {
+      display: block;
+      font-style: normal;
+      font-size: .75rem;
+      padding: 6px 2px 2px
+    }
+
+    .hint {
+      font-size: .72rem;
+      color: #8a5a5f
+    }
+
+    .list {
+      list-style: none;
+      margin: 0 0 14px;
+      padding: 0;
+      counter-reset: n
+    }
+
+    .list li {
+      background: var(--tile);
+      border-radius: 12px;
+      padding: 10px 12px 10px 12px;
+      margin-bottom: 8px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      line-height: 1.7;
+      counter-increment: n
+    }
+
+    .list li::before {
+      content: counter(n);
+      flex: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--peach);
+      display: grid;
+      place-items: center;
+      font-size: .8rem;
+      font-weight: 600
+    }
+
+    .quote {
+      font-size: 1.25rem;
+      text-align: center;
+      background: var(--tile);
+      border-radius: 14px;
+      padding: 14px;
+      line-height: 1.5;
+      color: #5a141f
+    }
+
+    .env {
+      width: 150px;
+      height: 100px;
+      margin: 18px auto;
+      border-radius: 8px;
+      background: linear-gradient(160deg, #f7dcc3, #efc9a8);
+      position: relative;
+      display: block;
+      box-shadow: 0 8px 18px #0003
+    }
+
+    .env::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom right, transparent 49.5%, #d9ab86 50%) 0 0/50% 60% no-repeat, linear-gradient(to bottom left, transparent 49.5%, #d9ab86 50%) 100% 0/50% 60% no-repeat
+    }
+
+    #nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px
+    }
+
+    #nav button {
+      background: #ffffff14;
+      border: 1px solid #ffffff22;
+      border-radius: 99px;
+      min-width: 42px;
+      height: 42px;
+      padding: 0 14px
+    }
+
+    #nav button:disabled {
+      opacity: .35
+    }
+
+    #nav .n {
+      font-size: .85rem;
+      opacity: .85;
+      min-width: 44px;
+      text-align: center;
+      direction: ltr
+    }
+
+    /* letter */
+    #letter {
+      position: absolute;
+      inset: 0;
+      background: #000a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 5
+    }
+
+    #letter .card {
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 22px;
+      max-height: 100%;
+      overflow: auto;
+      padding: 24px 20px;
+      width: min(100%, 420px);
+      animation: rise .5s ease-out
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(30px) scale(.96);
+        opacity: 0
+      }
+    }
+
+    #letter h3 {
+      font-size: 1.9rem;
+      text-align: center;
+      margin: 0 0 14px;
+      color: #5a141f;
+      font-weight: 600
+    }
+
+    #letter p {
+      line-height: 2;
+      margin: 0 0 12px
+    }
+
+    #letter .sign {
+      font-size: 1.2rem;
+      text-align: center;
+      color: #5a141f;
+      margin-top: 16px
+    }
+
+    #close {
+      display: block;
+      margin: 14px auto 0;
+      background: var(--wine);
+      color: var(--paper);
+      border-radius: 99px;
+      padding: 10px 26px
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      * {
+        animation: none !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section id="cover" class="view">
+    <div class="book" id="book">
+      <small class="en">BOOK OF MEMORIES</small>
+      <h1 class="en" id="cTitle"></h1>
+      <div class="names en" id="cNames"></div>
+      <div class="since en" id="cSince"></div>
+      <button class="cta" id="open">افتح الكتاب ❤️</button>
+    </div>
+  </section>
+
+  <section id="reader" class="view hide">
+    <div id="bar">
+      <button id="play" aria-label="تشغيل الأغنية">▶</button>
+      <div class="t"><b id="song">Our Memory Song</b>
+        <div id="prog"><i></i></div>
+      </div>
+      <button id="pick">اختار أغنية</button>
+    </div>
+    <article id="page" aria-live="polite"></article>
+    <nav id="nav">
+      <button id="prev" aria-label="الصفحة السابقة">›</button>
+      <span class="n" id="num"></span>
+      <button id="next" aria-label="الصفحة التالية">‹</button>
+    </nav>
+  </section>
+
+  <div id="letter" class="hide" role="dialog" aria-modal="true">
+    <div class="card">
+      <h3 class="en">Forever Letter</h3>
+      <div id="letterBody"></div>
+      <div class="sign en" id="sign"></div>
+      <button id="close">قفل الرسالة</button>
+    </div>
+  </div>
+
+  <audio id="audio" loop></audio>
+  <input type="file" id="songFile" accept="audio/*" class="hide">
+  <input type="file" id="imgFile" accept="image/*" class="hide">
+
+  <script>
+    /* ===== عدّل هنا: الأسماء والتاريخ والنصوص ===== */
+    const C = {
+      title: "Our Love Story",
+      names: "Kerolos & Eriney",           // يتعرض في الغلاف والصفحات
+      start: "2026-11-11T00:00:00",     // تاريخ البداية
+      sinceLabel: "Since 11.11.&2026",
+      intro: "من أول لحظة عرفتك فيها، الدنيا بقت أحلى. كل تفصيلة صغيرة بينا بقت ذكرى، وكل يوم بيعدي بيأكدلي إنك أجمل اختيار.",
+      // مسارات الصور (6 صور) والأغنية. مثال: "photos/1.jpg" و "song.mp3"
+      photos: ["p1.jpeg", "p2.jpeg", "p3.jpeg", "p4.jpeg", "p5.jpeg", "p6.jpeg"],
+      song: "123456.m4a",
+      gallery: [
+        "ضحكتك هي حياتي", "أحلى صدفة في عمري", "بموت فيكي يا حبيبة",
+        "عالمي الخاص بيكي", "أجمل حكاية نكتبها سوا", "كل لحظة معاكي أمان"
+      ],
+      milestones: [
+        "‏مبدايا كدا صباح الخير يحبيبتي حقك عليا لو كنت قولتلك كلام يدايقك امبارح ♥️🫂عايزك تكوني عارفه اني بحبككك 🌎🥺 وبحب هزارك وبحب ضحكتك🌎🥺💍  بموت فيكي والله انتي حياتي🌎💍🥺 انتي عمري وانتي نجمه وقعت من السماا 😊🥺🌎. ودخلت جوه قلبي بحب اقضي وقتي معاكي 😘🌎💍. انتي وخده كل وقتي ومش هحب حد قدك 🙈🫂💕ولا هحب بعدك انتي جنتي الحلوه اللي بهرب من العالم كله معاها دة عشان ابقي معاكي 🥺🌎🫂وربنا يخليكي ليا وميحرمنيش منك ابدا ياروح قلبي 🌎🥺💍سعات بزعلك بس والله غصب عني🥺🌎💍  مش عايزك تزعلي مني ابدا ده بتمنا دايما من ربنا انك تكوني ليا الثانيه الي بتغيبي فيهاا عني بيبقا اليوم ملهوش لازمه🥺🌎💍 لما اكون تعبان مش بلاقي حد غيرك اتكلم معانا بحبك ينبض قلبي 🥺🌎😘كل نبضه فقلبي . بيتنبض باسمك انتي🥺🌎😊 وبحبك يقلب بابا وبموت فيكي انتي حاجه كده صعب تتوصف ولا كلام الدنيا كله هیوصفگ🥺🌎🫂 عشان مفيش ملاك  بيتوصف مهما اتكلم 🥺🌎😘مش هعرف اوصف نقطه من حبي ليكي انتي كل حياتي 🥺🌎🤍ربنا يخليكي ليا عرفتك صدفه 💕🌎🫂وحرفيا كانت احلى صدفه ف حياتي . لانك نعمه بجد من ربنا 🥺🌎💍حرفيا كل حاجه فيكي حلوه عينيكي ضحكتك كلامك هزارك طيبة قلبك حنيتك🥺🌎💍💕💖 كل حاجه بجدة شكرا انك الحاجه الحلوه اللي ف حياتي بجد🌎💍 ضحكتك بتنور حياتي🥺🌎😊 مش حياتي انا بس حياة كل الناس تقريبا 😊😘🌎 اعرفك من وقت مش كبير . بس حبيتك كتير اوي 😘🌎🥺💍قوة بجد بقيتي مصدر السعاده اللي ف حياتي 🥹🙈🤍🫂🌎بفرح تلقائي لمجرد اني بكلمك بجد انتي نعمه لازم اشكر ربنا😊😘🌎 عليها لو احتاجتيني هتلاقيني معاكي هفضل جمبك وسندك وباباكي و اخوكي و سندك ف اي حاجه 😘🌎😊🥺عن يوم في حياتي بتحلو لمجرد انك فيها😘😊🌎 اللي مشوفتش حد زيك وله هشوف فجمالك🥺💍💖💕🌎 ولا جمال ضحكتك زي مهي بتنور وشك وبتنور حياتي😊🥺😘💍 بجد انتي دخلتي قلبي بسرعه جدا وبقيتي بتشكلي جزء كبير من حياتي🌎💍💖💕🫂 حياتي كلها اصلا حاجه كده نادره حاجه جيه من القمر 🥺💍🌎😊🫂انتي دي السكهه لو ضلمه انتي فيها هتنوريها ياروحي ده كل حاجه ليها مكان 😊🥺💍🌎🫂وانا خليت مكانك قلبي كانت احلي صدفه🌎💍💕🫂💖🥺🌎😘💍"
+      ],
+      quote: "You are my today and all of my tomorrows.",
+      message: "حقيقي انتي وحشاني اوي اوي بجد ومن اكتر الحاجات الي بتمناها دلوقتي حرفيا اني اشوفك ولو حتي من بعيد♥️🥺 لان بجد حاسي اني مبقتش قادر استحمل اكتر من كدا ♥️🫂",
+      continues: "كل صفحة في الكتاب ده ذكرى، بس أجمل حاجة إن لسه في صفحات كتير جاية هنكتبها سوا.",
+      letter: [
+        "حقك عليا يانور عيني والله معرفش نمت ازاي ولا ازاي دا حصل بس الي اعرفه بجد اني بقيت احبك اكتر من نفسي♥️🫂 اكتر من نفسي لدرجه اني هدق حرفك علي ايدي قريب و نازل اطبع صورتك علشان احطها جوه قلبي مش جوه المحفظه♥️🥺 انا بجد مقدرش انيمك زعلانه مني و لو لحظه واحده ♥️🥺 ربنا وحده يعلم حبي ليكي بقي عامل ازاي ♥️ بقي عامل زي الطفل الي لسا مولود و عايز امه تفضل جنبه علي طول♥️🥺 و بقي خايف انه يتوه من غيرها ♥️ ومن علمات الحب الي بجد بقي اني انام وانا معاكي ف الشات او فون😂😂♥️ انا اسف يانن عيني ♥️🫂 و صدقني الحركه دي مش هتحصل تاني لاني والله بجد معرفش هي حصلت ازاي وانا فعلا زعلان موت و مدايق من نفسي جامد اوي 🙂🥺 انا فعلا عمري ف حياتي ما كنت ببقي نايم مبسوط و صاحي مبسوط ب الطريقه دي ♥️🥺 معرفش انتي عملتي فيا اي بعد ما كنت قفلت علي قلبي و قولت خلاص لقيتك انتي  جيتي غيرتي طعم الدنيا للاحلا ♥️🫂 و خليتي قلبي بقي عايز يخرج من مكانه من كتر الانبساط♥️🙈🫂 انا بقيت بدمنك و اعشقكك من بحبك بس♥️🫂 انتي خلتيني اعدي مرحله الحب دي بطريقه غريبه اوي♥️ طريقه و طعم و احساس للحب لاول مره فعلا و حقيقي اعرف و احس معني الحب الي بجد♥️🫂🥺 بحبك يااغلي حاجه ليا ف الدنيا♥️🫂 وانا اسف بجد ياحته مني بس والله انا مدايق اوي بس والله معرفش نمت ازاي🥺 بعشقك يحته مني♥️🫂"
+      ],
+      sign: "Forever yours ❤️"
+    };
+    /* ================================================ */
+
+    const $ = s => document.querySelector(s);
+    const pages = [
+      () => `<h2>بداية الحكاية</h2><p>${C.intro}</p><div class="counter" id="cnt"></div>`,
+      () => `<h2 class="en">Memories Gallery</h2><div class="grid">${C.gallery.map((t, i) => `<button class="tile" data-i="${i}"><div class="img" id="g${i}">اضغط وضيف صورة</div><em>${t}</em></button>`).join("")}</div><p class="hint" style="margin-top:12px">اضغط على أي مربع لاختيار صورة من موبايلك.</p>`,
+      () => `<h2>محطات في حكايتنا</h2><ol class="list">${C.milestones.map(t => `<li>${t}</li>`).join("")}</ol><div class="quote en">${C.quote}</div>`,
+      () => `<h2>رسالة من القلب</h2><p>${C.message}</p><div class="quote"><div class="en" style="font-size:1.4rem;margin-bottom:6px">The Story Continues</div><span style="font-size:.9rem">${C.continues}</span></div>`,
+      () => `<h2>المفاجأة الأخيرة</h2><span class="env" aria-hidden="true"></span><p>آخر صفحة مش رسالة عادية.. ده ظرف صغير شايل كلام كبير من قلبي ليكي.</p><p><button class="cta" id="envBtn">افتح الظرف ❤️</button></p>`
+    ];
+    const meta = i => `<div class="meta"><span class="en">Page ${i + 1}</span><span class="en">${C.names}</span></div>`;
+    let cur = 0, timer = null, photos = {};
+    C.photos.forEach((u, i) => { if (u) photos[i] = u; });
+
+    function diff(a, b) {
+      let t = new Date(a), y = b.getFullYear() - t.getFullYear();
+      t.setFullYear(t.getFullYear() + y); if (t > b) { y--; t = new Date(a); t.setFullYear(t.getFullYear() + y); }
+      let m = (b.getFullYear() - t.getFullYear()) * 12 + b.getMonth() - t.getMonth();
+      let t2 = new Date(t); t2.setMonth(t2.getMonth() + m);
+      if (t2 > b) { m--; t2 = new Date(t); t2.setMonth(t2.getMonth() + m); }
+      let s = Math.floor((b - t2) / 1000);
+      return [y, m, Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60];
+    }
+    function tick() {
+      const el = $("#cnt"); if (!el) return;
+      const v = diff(new Date(C.start), new Date()), L = ["سنين", "شهور", "أيام", "ساعات", "دقايق", "ثواني"];
+      el.innerHTML = v.map((n, i) => `<div><b>${n}</b><span>${L[i]}</span></div>`).join("");
+    }
+    function show(i, dir) {
+      cur = i; clearInterval(timer);
+      const p = $("#page");
+      p.innerHTML = meta(i) + pages[i]();
+      p.scrollTop = 0;
+      p.animate([{ opacity: 0, transform: `translateX(${dir * 28}px)` }, { opacity: 1, transform: "none" }], { duration: 320, easing: "ease-out" });
+      $("#num").textContent = `${i + 1} / ${pages.length}`;
+      $("#prev").disabled = i === 0; $("#next").disabled = i === pages.length - 1;
+      if (i === 0) { tick(); timer = setInterval(tick, 1000); }
+      if (i === 1) Object.keys(photos).forEach(k => paint(k));
+    }
+    function paint(k) { const g = $("#g" + k); if (g) { g.style.backgroundImage = `url("${photos[k]}")`; g.textContent = ""; } }
+
+    $("#cTitle").textContent = C.title; $("#cNames").textContent = C.names; $("#cSince").textContent = C.sinceLabel;
+    $("#open").onclick = () => {
+      $("#book").classList.add("opening");
+      setTimeout(() => { $("#cover").classList.add("hide"); $("#reader").classList.remove("hide"); show(0, 1); }, 650);
+    };
+    $("#next").onclick = () => cur < pages.length - 1 && show(cur + 1, -1);
+    $("#prev").onclick = () => cur > 0 && show(cur - 1, 1);
+    document.addEventListener("keydown", e => {
+      if ($("#reader").classList.contains("hide")) return;
+      if (e.key === "ArrowLeft") $("#next").click(); if (e.key === "ArrowRight") $("#prev").click();
+    });
+
+    /* gallery + letter (event delegation) */
+    let slot = null;
+    $("#page").addEventListener("click", e => {
+      const tile = e.target.closest(".tile");
+      if (tile) { slot = tile.dataset.i; $("#imgFile").click(); }
+      if (e.target.id === "envBtn") {
+        $("#letterBody").innerHTML = C.letter.map(t => `<p>${t}</p>`).join("");
+        $("#sign").textContent = C.sign; $("#letter").classList.remove("hide"); $("#close").focus();
+      }
+    });
+    $("#imgFile").onchange = e => {
+      const f = e.target.files[0]; if (!f || slot === null) return;
+      photos[slot] = URL.createObjectURL(f); paint(slot); e.target.value = "";
+    };
+    $("#close").onclick = () => $("#letter").classList.add("hide");
+
+    /* song */
+    const a = $("#audio"), play = $("#play");
+    if (C.song) { a.src = C.song; }
+    $("#pick").onclick = () => $("#songFile").click();
+    $("#songFile").onchange = e => {
+      const f = e.target.files[0]; if (!f) return;
+      a.src = URL.createObjectURL(f); $("#song").textContent = f.name.replace(/\.[^.]+$/, ""); a.play().catch(() => { });
+    };
+    play.onclick = () => { if (!a.src) return $("#songFile").click(); a.paused ? a.play() : a.pause(); };
+    a.onplay = () => play.textContent = "⏸"; a.onpause = () => play.textContent = "▶";
+    a.ontimeupdate = () => { if (a.duration) $("#prog i").style.width = (a.currentTime / a.duration * 100) + "%"; };
+  </script>
+</body>
+
+</html>
